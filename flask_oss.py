@@ -1,45 +1,32 @@
 # -*- coding: utf-8 -*-
-import hashlib
-import json
 import logging
-import os
-import re
-import gzip
-
-import warnings
 
 try:
     from cStringIO import StringIO
 except ImportError:
     from io import StringIO
-import mimetypes
-from collections import defaultdict
 
 import oss2
 import oss2.exceptions
-from oss2.exceptions import ClientError
-from flask import current_app
-from flask import url_for as flask_url_for
-import six
 
 
 logger = logging.getLogger('flask_oss')
 
 
-DEFAULT_SETTINGS = {'FLASKOSS_USE_HTTPS': True,
-                    'FLASKOSS_ACTIVE': True,
-                    'FLASKOSS_DEBUG': False,
-                    'FLASKOSS_BUCKET_DOMAIN': 's3.amazonaws.com',
-                    'FLASKOSS_CDN_DOMAIN': '',
-                    'FLASKOSS_USE_CACHE_CONTROL': False,
-                    'FLASKOSS_HEADERS': {},
-                    'FLASKOSS_FILEPATH_HEADERS': {},
-                    'FLASKOSS_ONLY_MODIFIED': False,
-                    'FLASKOSS_URL_STYLE': 'host',
-                    'FLASKOSS_GZIP': False,
-                    'FLASKOSS_GZIP_ONLY_EXTS': [],
-                    'FLASKOSS_FORCE_MIMETYPE': False,
-                    }
+# DEFAULT_SETTINGS = {'FLASKOSS_USE_HTTPS': True,
+#                     'FLASKOSS_ACTIVE': True,
+#                     'FLASKOSS_DEBUG': False,
+#                     'FLASKOSS_BUCKET_DOMAIN': 's3.amazonaws.com',
+#                     'FLASKOSS_CDN_DOMAIN': '',
+#                     'FLASKOSS_USE_CACHE_CONTROL': False,
+#                     'FLASKOSS_HEADERS': {},
+#                     'FLASKOSS_FILEPATH_HEADERS': {},
+#                     'FLASKOSS_ONLY_MODIFIED': False,
+#                     'FLASKOSS_URL_STYLE': 'host',
+#                     'FLASKOSS_GZIP': False,
+#                     'FLASKOSS_GZIP_ONLY_EXTS': [],
+#                     'FLASKOSS_FORCE_MIMETYPE': False,
+#                     }
 
 __version__ = (0, 1, 0)
 
@@ -53,15 +40,46 @@ class FlaskOSS(object):
             self.init_app(app)
 
     def init_app(self, app):
-        """
-        An alternative way to pass your :class:`flask.Flask` application
-        object to Flask-S3. :meth:`init_app` also takes care of some
-        default `settings`_.
-        :param app: the :class:`flask.Flask` application object.
-        """
 
-        for k, v in DEFAULT_SETTINGS.items():
-            app.config.setdefault(k, v)
+        _access_key     = app.config.get('OSS_ACCESS_KEY_ID')
+        _secret         = app.config.get('OSS_SECRET_ACCESS_KEY')
+        _endpoint       = app.config.get('OSS_ENDPOINT')
+        _bucket_name    = app.config.get('OSS_BUCKET_NAME')
+        # assert self.access_key is not None
+        # print self.access_key
+        # if self.access_key is None or self.secret is None:
+        #     raise
+        self.auth   = oss2.Auth(_access_key, _secret)
 
-        # print app.config
+        self.bucket = oss2.Bucket(self.auth, _endpoint, _bucket_name)
+
+
+    def get_file(self, filename=None):
+        assert filename is not None
+
+        try:
+            result = self.bucket.get_object(filename)
+            return result.read()
+        except oss2.exceptions.NoSuchKey as e:
+            logger.error('{0} not found: http_status={1}, request_id={2}'.format(filename, e.status, e.request_id))
+
+
+
+if __name__ == '__main__':
+    from flask import Flask
+
+    app = Flask(__name__)
+    app.config['OSS_ACCESS_KEY_ID']     = 'kj7wLAH8ABFz75Ok'
+    app.config['OSS_SECRET_ACCESS_KEY'] = '7c0TZc3ZkLzEPTDJ4Z4jzuxJkze9ZC'
+    app.config['OSS_ENDPOINT']          = 'oss.aliyuncs.com'
+    app.config['OSS_BUCKET_NAME']       = 'epub360-media'
+    oss = FlaskOSS(app)
+
+    print oss.get_file('materials/origin/a95ab572aa805d743fce5a0e45957054_origin.png')
+    # print oss
+
+
+    # def auth(self):
+
+
 
