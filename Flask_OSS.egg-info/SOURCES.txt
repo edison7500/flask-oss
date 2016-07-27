@@ -1,8 +1,0 @@
-flask_oss.py
-setup.py
-Flask_OSS.egg-info/PKG-INFO
-Flask_OSS.egg-info/SOURCES.txt
-Flask_OSS.egg-info/dependency_links.txt
-Flask_OSS.egg-info/not-zip-safe
-Flask_OSS.egg-info/requires.txt
-Flask_OSS.egg-info/top_level.txt
