@@ -26,7 +26,7 @@ version = parse_version('__version__')
 setup(
     name='Flask-OSS',
     version=version,
-    # url='http://github.com/e-dard/flask-s3',
+    url='https://github.com/edison7500/flask-oss',
     license='WTFPL',
     author='jiaxin',
     author_email='jiaxin@guoku.com',

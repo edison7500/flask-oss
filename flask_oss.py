@@ -38,7 +38,6 @@ class FlaskOSS(object):
 
         self.bucket = oss2.Bucket(self.auth, _endpoint, _bucket_name)
 
-
     def get_file(self, filename=None):
         assert filename is not None
 
@@ -49,22 +48,18 @@ class FlaskOSS(object):
             logger.error('{0} not found: http_status={1}, request_id={2}'.format(filename, e.status, e.request_id))
 
 
+    def del_file(self, filename=None):
+        assert filename is not None
 
-if __name__ == '__main__':
-    from flask import Flask
+        is_delete = False
 
-    app = Flask(__name__)
-    app.config['OSS_ACCESS_KEY_ID']     = 'kj7wLAH8ABFz75Ok'
-    app.config['OSS_SECRET_ACCESS_KEY'] = '7c0TZc3ZkLzEPTDJ4Z4jzuxJkze9ZC'
-    app.config['OSS_ENDPOINT']          = 'oss.aliyuncs.com'
-    app.config['OSS_BUCKET_NAME']       = 'epub360-media'
-    oss = FlaskOSS(app)
-
-    print oss.get_file('materials/origin/a95ab572aa805d743fce5a0e45957054_origin.png')
-    # print oss
-
-
-    # def auth(self):
+        try:
+            self.bucket.delete_object(filename)
+            is_delete = True
+        except oss2.exceptions.NoSuchKey as e:
+            logger.error('{0} not found: http_status={1}, request_id={2}'.format(filename, e.status, e.request_id))
+        finally:
+            return is_delete
 
 
 
