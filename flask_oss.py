@@ -13,21 +13,6 @@ import oss2.exceptions
 logger = logging.getLogger('flask_oss')
 
 
-# DEFAULT_SETTINGS = {'FLASKOSS_USE_HTTPS': True,
-#                     'FLASKOSS_ACTIVE': True,
-#                     'FLASKOSS_DEBUG': False,
-#                     'FLASKOSS_BUCKET_DOMAIN': 's3.amazonaws.com',
-#                     'FLASKOSS_CDN_DOMAIN': '',
-#                     'FLASKOSS_USE_CACHE_CONTROL': False,
-#                     'FLASKOSS_HEADERS': {},
-#                     'FLASKOSS_FILEPATH_HEADERS': {},
-#                     'FLASKOSS_ONLY_MODIFIED': False,
-#                     'FLASKOSS_URL_STYLE': 'host',
-#                     'FLASKOSS_GZIP': False,
-#                     'FLASKOSS_GZIP_ONLY_EXTS': [],
-#                     'FLASKOSS_FORCE_MIMETYPE': False,
-#                     }
-
 __version__ = (0, 1, 0)
 
 
