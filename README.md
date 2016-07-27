@@ -20,10 +20,10 @@ from flask_oss import FlaskOSS
 app = Flask(__name__)
 oss = FlaskOSS(app)
 
-download file from oss
+#download file from oss
 oss.get_file('<your filename in oss>')
 
-remove file from oss
+#remove file from oss
 oss.delete_file('<your filename in oss>')
 
 
