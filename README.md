@@ -24,7 +24,7 @@ oss = FlaskOSS(app)
 oss.get_file('<your filename in oss>')
 
 #remove file from oss
-oss.delete_file('<your filename in oss>')
+oss.del_file('<your filename in oss>')
 
 
 ```

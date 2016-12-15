@@ -38,6 +38,16 @@ class FlaskOSS(object):
 
         self.bucket = oss2.Bucket(self.auth, _endpoint, _bucket_name)
 
+    def put_file(self, filename=None, raw_contents=None):
+        assert filename is not None
+        success = self.bucket.put_object(filename, raw_contents)
+        if (success.status == 200):
+            return filename
+        else:
+            print ("FAILURE writing file {filename}".format(filename= filename))
+
+        # self.bucket.pu
+
     def get_file(self, filename=None):
         assert filename is not None
 
