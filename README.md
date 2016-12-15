@@ -20,6 +20,9 @@ from flask_oss import FlaskOSS
 app = Flask(__name__)
 oss = FlaskOSS(app)
 
+#upload file to oss
+oss.put_file('<you filename>', 'file data')
+
 #download file from oss
 oss.get_file('<your filename in oss>')
 
