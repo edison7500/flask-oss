@@ -13,7 +13,7 @@ import oss2.exceptions
 logger = logging.getLogger('flask_oss')
 
 
-__version__ = (0, 1, 0)
+__version__ = (0, 2, 0)
 
 
 
@@ -44,9 +44,7 @@ class FlaskOSS(object):
         if (success.status == 200):
             return filename
         else:
-            print ("FAILURE writing file {filename}".format(filename= filename))
-
-        # self.bucket.pu
+            logger.error("FAILURE writing file {filename}".format(filename= filename))
 
     def get_file(self, filename=None):
         assert filename is not None
@@ -57,6 +55,11 @@ class FlaskOSS(object):
         except oss2.exceptions.NoSuchKey as e:
             logger.error('{0} not found: http_status={1}, request_id={2}'.format(filename, e.status, e.request_id))
 
+    def exists_file(self, filename=None):
+        assert filename is not None
+        exist  = self.bucket.object_exists(filename)
+        if exist:
+            return True
 
     def del_file(self, filename=None):
         assert filename is not None
