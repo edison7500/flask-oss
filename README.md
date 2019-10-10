@@ -1,6 +1,8 @@
 # flask-oss
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/51fdde18650c4a50a33cc909d820b02f)](https://www.codacy.com/manual/edison7500/flask-oss?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edison7500/flask-oss&amp;utm_campaign=Badge_Grade)
+[![GitHub license](https://img.shields.io/github/license/edison7500/flask-oss.svg)](https://github.com/edison7500/flask-oss/blob/master/LICENSE)
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 flask stroage use **aliyun-oss** 
 
