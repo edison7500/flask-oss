@@ -1,5 +1,7 @@
 # flask-oss
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/51fdde18650c4a50a33cc909d820b02f)](https://www.codacy.com/manual/edison7500/flask-oss?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edison7500/flask-oss&amp;utm_campaign=Badge_Grade)
+
 flask stroage from **aliyun-oss** 
 
 

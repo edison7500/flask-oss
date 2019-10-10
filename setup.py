@@ -28,7 +28,7 @@ setup(
     name="Flask-OSS",
     version=version,
     url="https://github.com/edison7500/flask-oss",
-    license="WTFPL",
+    license="Apache",
     author="jiaxin",
     author_email="jiaxin@guoku.com",
     description="Seamlessly serve the static files of your Flask app from aliyun oss",
