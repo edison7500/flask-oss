@@ -2,7 +2,7 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/51fdde18650c4a50a33cc909d820b02f)](https://www.codacy.com/manual/edison7500/flask-oss?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edison7500/flask-oss&amp;utm_campaign=Badge_Grade)
 
-flask stroage from **aliyun-oss** 
+flask stroage use **aliyun-oss** 
 
 
 ## flask config
@@ -15,7 +15,7 @@ OSS_BUCKET_NAME         = '<your oss bucket name>'
 ```
 
 ## How to use 
-```
+```.python
 from flask import Flask
 from flask_oss import FlaskOSS
 
@@ -33,6 +33,4 @@ oss.get_file('<your filename in oss>')
 
 #remove file from oss
 oss.del_file('<your filename in oss>')
-
-
 ```
