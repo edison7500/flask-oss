@@ -3,12 +3,12 @@ Flask-OSS
 -------------
 Easily serve your static files from aliyun oss.
 """
+import os
+import re
 from setuptools import setup
 
 
 def parse_version(asignee):
-    import os, re
-
     here = os.path.dirname(os.path.abspath(__file__))
     version_re = re.compile(r"%s = (\(.*?\))" % asignee)
     with open(os.path.join(here, "flask_oss.py")) as fp:

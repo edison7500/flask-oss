@@ -41,7 +41,9 @@ class FlaskOSS(object):
         if success.status == 200:
             return filename
         else:
-            logger.error("FAILURE writing file {filename}".format(filename=filename))
+            logger.error(
+                "FAILURE writing file {filename}".format(filename=filename)
+            )
 
     def get_file(self, filename=None):
         assert filename is not None
