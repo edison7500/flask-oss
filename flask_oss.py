@@ -9,9 +9,7 @@ except ImportError:
 import oss2
 import oss2.exceptions
 
-
 logger = logging.getLogger("flask_oss")
-
 
 __version__ = (0, 2, 0)
 
@@ -38,6 +36,20 @@ class FlaskOSS(object):
     def put_file(self, filename=None, raw_contents=None):
         assert filename is not None
         success = self.bucket.put_object(filename, raw_contents)
+        if success.status == 200:
+            return filename
+        else:
+            logger.error("FAILURE writing file {filename}".format(filename=filename))
+
+    def put_file_by_path(self, filename=None, filepath=None):
+        """
+        :param filename: filename-in-oss.txt
+        :param filepath: /tmp/folder/filename-in-local.txt
+        :return: filename
+        """
+        assert filename is not None
+        assert filepath is not None
+        success = self.bucket.put_object_from_file(filename, filepath)
         if success.status == 200:
             return filename
         else:
