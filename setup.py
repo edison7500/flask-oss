@@ -3,30 +3,29 @@ Flask-OSS
 -------------
 Easily serve your static files from aliyun oss.
 """
-import os
-import re
 from setuptools import setup
 
 
-def parse_version(asignee):
-    here = os.path.dirname(os.path.abspath(__file__))
-    version_re = re.compile(r"%s = (\(.*?\))" % asignee)
-    with open(os.path.join(here, "flask_oss.py")) as fp:
-        for line in fp:
-            match = version_re.search(line)
-            if match:
-                version = eval(match.group(1))
-                return ".".join(map(str, version))
-        else:
-            raise Exception("cannot find version")
+# def parse_version(asignee):
+#     here = os.path.dirname(os.path.abspath(__file__))
+#     version_re = re.compile(r"%s = (\(.*?\))" % asignee)
+#     with open(os.path.join(here, "flask_oss.py")) as fp:
+#         for line in fp:
+#             match = version_re.search(line)
+#             if match:
+#                 version = eval(match.group(1))
+#                 return ".".join(map(str, version))
+#         else:
+#             raise Exception("cannot find version")
 
 
-version = parse_version("__version__")
+# version = parse_version("__version__")
+__version__ = "0.2.0"
 
 
 setup(
     name="Flask-OSS",
-    version=version,
+    version=__version__,
     url="https://github.com/edison7500/flask-oss",
     license="Apache",
     author="jiaxin",

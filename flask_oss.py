@@ -9,11 +9,7 @@ except ImportError:
 import oss2
 import oss2.exceptions
 
-
 logger = logging.getLogger("flask_oss")
-
-
-__version__ = (0, 2, 0)
 
 
 class FlaskOSS(object):
