@@ -27,6 +27,9 @@ oss = FlaskOSS(app)
 #upload file to oss
 oss.put_file('<your filename>', 'file data')
 
+#upload file to oss
+oss.put_file_by_path('<your filename>', '<your filepath>')
+
 #check file in oss
 oss.exists_file('<your filename>')
 
