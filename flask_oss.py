@@ -61,10 +61,7 @@ class FlaskOSS(object):
             return True
 
     def del_file(self, filename=None):
-        assert filename is not None
-
         is_delete = False
-
         try:
             self.bucket.delete_object(filename)
             is_delete = True
