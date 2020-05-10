@@ -11,8 +11,6 @@ import oss2.exceptions
 
 logger = logging.getLogger("flask_oss")
 
-__version__ = (0, 2, 0)
-
 
 class FlaskOSS(object):
     def __init__(self, app=None):
@@ -39,7 +37,9 @@ class FlaskOSS(object):
         if success.status == 200:
             return filename
         else:
-            logger.error("FAILURE writing file {filename}".format(filename=filename))
+            logger.error(
+                "FAILURE writing file {filename}".format(filename=filename)
+            )
 
     def put_file_by_path(self, filename=None, filepath=None):
         """
@@ -75,10 +75,7 @@ class FlaskOSS(object):
             return True
 
     def del_file(self, filename=None):
-        assert filename is not None
-
         is_delete = False
-
         try:
             self.bucket.delete_object(filename)
             is_delete = True

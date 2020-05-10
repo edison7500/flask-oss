@@ -6,27 +6,12 @@ Easily serve your static files from aliyun oss.
 from setuptools import setup
 
 
-def parse_version(asignee):
-    import os, re
-
-    here = os.path.dirname(os.path.abspath(__file__))
-    version_re = re.compile(r"%s = (\(.*?\))" % asignee)
-    with open(os.path.join(here, "flask_oss.py")) as fp:
-        for line in fp:
-            match = version_re.search(line)
-            if match:
-                version = eval(match.group(1))
-                return ".".join(map(str, version))
-        else:
-            raise Exception("cannot find version")
-
-
-version = parse_version("__version__")
+__version__ = "0.2.1"
 
 
 setup(
     name="Flask-OSS",
-    version=version,
+    version=__version__,
     url="https://github.com/edison7500/flask-oss",
     license="Apache",
     author="jiaxin",
@@ -36,9 +21,8 @@ setup(
     py_modules=["flask_oss"],
     zip_safe=False,
     include_package_data=True,
-    platforms="any",
+    platforms="flask",
     install_requires=["Flask", "oss2>=2.0.0", "six"],
-    tests_require=["nose", "mock"],
     classifiers=[
         "Environment :: Web Environment",
         "Intended Audience :: Developers",
@@ -48,5 +32,4 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    test_suite="nose.collector",
 )
