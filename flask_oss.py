@@ -27,6 +27,20 @@ class FlaskOSS(object):
         else:
             logger.error(f"FAILURE writing file {filename}")
 
+    def put_file_by_path(self, filename=None, filepath=None):
+        """
+        :param filename: filename-in-oss.txt
+        :param filepath: /tmp/folder/filename-in-local.txt
+        :return: filename
+        """
+        assert filename is not None
+        assert filepath is not None
+        success = self.bucket.put_object_from_file(filename, filepath)
+        if success.status == 200:
+            return filename
+        else:
+            logger.error("FAILURE writing file {filename}".format(filename=filename))
+
     def get_file(self, filename=None):
         try:
             result = self.bucket.get_object(filename)
