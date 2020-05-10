@@ -62,5 +62,4 @@ class FlaskOSS(object):
             logger.error(
                 f"{filename} not found: http_status={e.status}, request_id={e.request_id}"
             )
-        finally:
-            return is_delete
+        return is_delete
