@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/github/license/edison7500/flask-oss.svg)](https://github.com/edison7500/flask-oss/blob/master/LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-flask storage use **aliyun-oss** 
+flask stroage use **aliyun-oss** 
 
 
 ## flask config
